@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <title>ERECK Society | NIT Kurukshetra</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 7%;
+            background: rgba(15, 23, 42, 0.97);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #a5b4fc;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a5b4fc;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 26px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            padding: 80px 7%;
+            color: white;
+
+            background:
+                linear-gradient(110deg,
+                    rgba(15, 23, 42, 0.96),
+                    rgba(49, 46, 129, 0.83)),
+                url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 7px 16px;
+            background: rgba(165, 180, 252, 0.16);
+            border: 1px solid rgba(165, 180, 252, 0.5);
+            border-radius: 30px;
+            color: #c7d2fe;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.12;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #a5b4fc;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #e2e8f0;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: white;
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            color: white;
+            border: 1px solid #a5b4fc;
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* GENERAL SECTION */
+
+        section {
+            padding: 75px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .about-card {
+            padding: 28px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .about-card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .about-card h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        /* EVENT FILTERS */
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: white;
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* EVENT CARDS */
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .event-card {
+            overflow: hidden;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-content {
+            padding: 23px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .technical {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .cultural {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
+        .sports {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .event-content h3 {
+            color: var(--dark);
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .event-info {
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #475569;
+        }
+
+        .event-content .btn {
+            width: 100%;
+            margin-top: 18px;
+        }
+
+        /* REGISTRATION MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(15, 23, 42, 0.75);
+            padding: 20px;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            animation: appear 0.25s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .modal-subtitle {
+            color: #64748b;
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 18px;
+            top: 12px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #64748b;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            outline: none;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* SUCCESS CARD */
+
+        .success-card {
+            display: none;
+            text-align: center;
+            padding: 25px 10px 10px;
+        }
+
+        .success-card.show {
+            display: block;
+        }
+
+        .success-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 38px;
+            border-radius: 50%;
+        }
+
+        .success-card h2 {
+            color: #15803d;
+            margin-bottom: 10px;
+        }
+
+        .success-card p {
+            margin-bottom: 12px;
+        }
+
+        .registration-details {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin: 18px 0;
+            text-align: left;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: #eef2ff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--dark);
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: var(--dark);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px 7%;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        footer span,
+        footer a:hover {
+            color: #a5b4fc;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 15px 0;
+        }
+
+        .social-links a {
+            color: #e2e8f0;
+        }
+
+        .social-links i {
+            margin-right: 6px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .events-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 14px 5%;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 5% 18px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 12px 0;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 65px 6%;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .btn-outline {
+                margin: 12px 0 0;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-image {
+                height: 220px;
+            }
+
+            .modal-content {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <a href="#home" class="logo">ERECK <span>Society</span></a>
+
+        <button class="menu-btn" id="menuBtn"
+            aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="hero-label">
+                NIT Kurukshetra | Student Community
+            </div>
+
+            <h1>
+                Explore. Create.<br>
+                <span>Make an Impact.</span>
+            </h1>
+
+            <p>
+                Welcome to ERECK Society! Discover exciting events,
+                connect with fellow students, showcase your talent,
+                and turn your ideas into reality.
+            </p>
+
+            <a href="#events" class="btn btn-primary">
+                Explore Events →
+            </a>
+
+            <a href="#about" class="btn btn-outline">
+                Discover Society
+            </a>
+
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="section-heading">
+            <h2>About Our Society</h2>
+            <p>A community where ideas meet opportunities.</p>
+        </div>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+                <div class="icon">💡</div>
+                <h3>Innovation</h3>
+                <p>
+                    Encourage creative thinking and explore new
+                    ideas through collaborative activities.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="icon">🤝</div>
+                <h3>Collaboration</h3>
+                <p>
+                    Connect with students, work in teams, and
+                    build meaningful campus relationships.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="icon">🚀</div>
+                <h3>Growth</h3>
+                <p>
+                    Develop your skills, gain practical experience,
+                    and make your college journey memorable.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+
+    <section id="events">
+
+        <div class="section-heading">
+            <h2>Upcoming Events</h2>
+            <p>Find your interest and register for an event.</p>
+        </div>
+
+        <!-- FILTER BUTTONS -->
+
+        <div class="filters">
+
+            <button class="filter-btn active" data-category="All">
+                All Events
+            </button>
+
+            <button class="filter-btn" data-category="Technical">
+                Technical
+            </button>
+
+            <button class="filter-btn" data-category="Cultural">
+                Cultural
+            </button>
+
+            <button class="filter-btn" data-category="Sports">
+                Sports
+            </button>
+
+        </div>
+
+        <!-- EVENT CARDS -->
+
+        <div class="events-grid">
+
+            <!-- VERTIGO -->
+
+            <article class="event-card" data-category="Technical">
+
+                <img
+                    class="event-image"
+                    src="https://tse3.mm.bing.net/th/id/OIP.BwvXDAFx1HDDEgsPMb8ESwHaEp?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Technical event"
+                    loading="lazy">
+
+                <div class="event-content">
+
+                    <span class="badge technical">Technical</span>
+
+                    <h3>VERTIGO</h3>
+
+                    <p class="event-description">
+                        Explore innovative ideas, solve problems,
+                        and showcase your technical skills.
+                    </p>
+
+                    <p class="event-info">📅 Date: To be announced</p>
+                    <p class="event-info">🕒 Time: To be announced</p>
+                    <p class="event-info">📍 NIT Kurukshetra Campus</p>
+
+                    <button type="button"
+                        class="btn btn-primary register-btn"
+                        data-event="VERTIGO">
+                        Register Now
+                    </button>
+
+                </div>
+            </article>
+
+            <!-- ELECTRICA -->
+
+            <article class="event-card" data-category="Cultural">
+
+                <img
+                    class="event-image"
+                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80"
+                    alt="Cultural event stage"
+                    loading="lazy">
+
+                <div class="event-content">
+
+                    <span class="badge cultural">Cultural</span>
+
+                    <h3>ELECTRICA</h3>
+
+                    <p class="event-description">
+                        Celebrate creativity through music,
+                        performances, art, and entertainment.
+                    </p>
+
+                    <p class="event-info">📅 Date: To be announced</p>
+                    <p class="event-info">🕒 Time: To be announced</p>
+                    <p class="event-info">📍 NIT Kurukshetra Campus</p>
+
+                    <button type="button"
+                        class="btn btn-primary register-btn"
+                        data-event="ELECTRICA">
+                        Register Now
+                    </button>
+
+                </div>
+            </article>
+
+            <!-- CIRCUIT CUP -->
+
+            <article class="event-card" data-category="Sports">
+
+                <img
+                    class="event-image"
+                    src="https://electroreck.vercel.app/assets/events/sports.jpg"
+                    alt="Sports event"
+                    loading="lazy">
+
+                <div class="event-content">
+
+                    <span class="badge sports">Sports</span>
+
+                    <h3>Circuit Cup: Tech-Sports &amp; Speed Prototyping</h3>
+
+                    <p class="event-description">
+                        Compete with fellow students, demonstrate
+                        your teamwork, and enjoy exciting activities.
+                    </p>
+
+                    <p class="event-info">📅 Date: To be announced</p>
+                    <p class="event-info">🕒 Time: To be announced</p>
+                    <p class="event-info">📍 NIT Kurukshetra Campus</p>
+
+                    <button type="button"
+                        class="btn btn-primary register-btn"
+                        data-event="Circuit Cup: Tech-Sports & Speed Prototyping">
+                        Register Now
+                    </button>
+
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- REGISTRATION MODAL -->
+
+    <div class="modal"
+        id="registrationModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+
+            <button type="button"
+                class="close-btn"
+                id="closeModal"
+                aria-label="Close registration form">
+                &times;
+            </button>
+
+            <!-- FORM -->
+
+            <div id="registrationFormContainer">
+
+                <h2 id="modalTitle">Event Registration</h2>
+
+                <p class="modal-subtitle">
+                    Fill in your details to register.
+                </p>
+
+                <form id="registrationForm">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            pattern="[A-Za-z ]{2,60}"
+                            title="Enter a name using letters and spaces."
+                            minlength="2"
+                            maxlength="60"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">College Email *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rollNumber">Roll Number *</label>
+
+                        <input
+                            type="text"
+                            id="rollNumber"
+                            name="rollNumber"
+                            placeholder="Enter your roll number"
+                            maxlength="30"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+
+                        <select id="department" name="department" required>
+
+                            <option value="">Select Department</option>
+                            <option value="Computer Engineering">Computer Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Electronics and Communication">Electronics and Communication</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Production and Industrial Engineering">Production and Industrial Engineering</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedEvent">Selected Event *</label>
+
+                        <select id="selectedEvent" name="event" required>
+
+                            <option value="">Select an event</option>
+                            <option value="VERTIGO">VERTIGO</option>
+                            <option value="ELECTRICA">ELECTRICA</option>
+                            <option value="Circuit Cup: Tech-Sports & Speed Prototyping">
+                                Circuit Cup: Tech-Sports &amp; Speed Prototyping
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary submit-btn">
+                        Submit Registration
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- SUCCESS CARD -->
+
+            <div class="success-card" id="successCard">
+
+                <div class="success-icon">✓</div>
+
+                <h2>Thank You!</h2>
+
+                <p>Your registration was successful.</p>
+
+                <div class="registration-details"
+                    id="registrationDetails">
+                </div>
+
+                <button type="button"
+                    class="btn btn-primary"
+                    id="doneBtn">
+                    Done
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+        <h2>Be Part of Something Great</h2>
+
+        <p>
+            Join our community, participate in events,
+            and create unforgettable college memories.
+        </p>
+
+        <p>
+            <strong>ERECK Society</strong> |
+            NIT Kurukshetra
+        </p>
+
+        <a href="#events" class="btn btn-primary">
+            Explore Events
+        </a>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            &copy; <span id="year"></span>
+            <a href="https://nitkkr.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer">
+                NIT Kurukshetra
+            </a>
+        </p>
+
+        <div class="social-links">
+
+            <a href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                Instagram
+            </a>
+
+            <a href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+            </a>
+
+        </div>
+
+        <p>Learn. Create. Innovate.</p>
+
+    </footer>
+
+    <script>
+        // UPDATE FOOTER YEAR
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // MOBILE NAVIGATION
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuBtn.setAttribute("aria-expanded", isOpen);
+
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+                menuBtn.setAttribute("aria-expanded", "false");
+
+            });
+
+        });
+
+
+        // EVENT CATEGORY FILTER
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const eventCards = document.querySelectorAll(".event-card");
+
+        filterButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const category = button.dataset.category;
+
+                filterButtons.forEach(function (btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                eventCards.forEach(function (card) {
+
+                    if (
+                        category === "All" ||
+                        card.dataset.category === category
+                    ) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        // REGISTRATION MODAL
+
+        const modal = document.getElementById("registrationModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const registrationForm = document.getElementById("registrationForm");
+
+        const formContainer =
+            document.getElementById("registrationFormContainer");
+
+        const successCard = document.getElementById("successCard");
+
+        const selectedEvent =
+            document.getElementById("selectedEvent");
+
+        const registerButtons =
+            document.querySelectorAll(".register-btn");
+
+        const doneBtn = document.getElementById("doneBtn");
+
+        let lastFocusedElement = null;
+
+
+        // OPEN MODAL WHEN REGISTER IS CLICKED
+
+        registerButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                lastFocusedElement = button;
+
+                const eventName = button.dataset.event;
+
+                // Automatically select the clicked event.
+
+                selectedEvent.value = eventName;
+
+                // Show the registration form.
+
+                formContainer.style.display = "block";
+                successCard.classList.remove("show");
+
+                // Open modal.
+
+                modal.classList.add("show");
+                document.body.style.overflow = "hidden";
+
+                document.getElementById("fullName").focus();
+
+            });
+
+        });
+
+
+        // CLOSE MODAL
+
+        function closeModal() {
+
+            modal.classList.remove("show");
+            document.body.style.overflow = "";
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+
+        }
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+
+        // DONE BUTTON
+
+        doneBtn.addEventListener("click", function () {
+
+            closeModal();
+
+            registrationForm.reset();
+
+            formContainer.style.display = "block";
+            successCard.classList.remove("show");
+
+        });
+
+
+        // CLOSE WHEN CLICKING OUTSIDE MODAL
+
+        modal.addEventListener("click", function (event) {
+
+            if (event.target === modal) {
+                closeModal();
+            }
+
+        });
+
+
+        // CLOSE USING ESCAPE KEY
+
+        document.addEventListener("keydown", function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("show")
+            ) {
+                closeModal();
+            }
+
+        });
+
+
+        // HANDLE REGISTRATION SUBMISSION
+
+        registrationForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (!registrationForm.reportValidity()) {
+                return;
+            }
+
+            const student = {
+
+                fullName: document.getElementById("fullName").value.trim(),
+
+                email: document.getElementById("email").value.trim(),
+
+                rollNumber: document.getElementById("rollNumber").value.trim(),
+
+                department: document.getElementById("department").value,
+
+                event: selectedEvent.value
+
+            };
+
+
+            // CREATE REGISTRATION DETAILS
+
+            const details =
+                document.getElementById("registrationDetails");
+
+            details.replaceChildren();
+
+            const fields = [
+
+                ["Name", student.fullName],
+                ["Email", student.email],
+                ["Roll Number", student.rollNumber],
+                ["Department", student.department],
+                ["Event", student.event]
+
+            ];
+
+            fields.forEach(function (field) {
+
+                const row = document.createElement("p");
+                const label = document.createElement("strong");
+
+                label.textContent = field[0] + ": ";
+
+                row.appendChild(label);
+
+                row.appendChild(
+                    document.createTextNode(field[1])
+                );
+
+                details.appendChild(row);
+
+            });
+
+
+            // SAVE REGISTRATION IN LOCAL STORAGE
+
+            try {
+
+                const registrations = JSON.parse(
+                    localStorage.getItem("ereckRegistrations") || "[]"
+                );
+
+                registrations.push({
+
+                    ...student,
+
+                    registeredAt: new Date().toISOString()
+
+                });
+
+                localStorage.setItem(
+                    "ereckRegistrations",
+                    JSON.stringify(registrations)
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to save registration:",
+                    error
+                );
+
+            }
+
+
+            // HIDE FORM AND DISPLAY SUCCESS CARD
+
+            formContainer.style.display = "none";
+
+            successCard.classList.add("show");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

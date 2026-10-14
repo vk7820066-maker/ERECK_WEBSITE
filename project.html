@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ereck | NIT Kurukshetra</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #081321;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #101f33;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #26384d;
+        }
+
+        nav h2 {
+            color: #5eead4;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #5eead4;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 420px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(120deg, #0b1c31, #173b54);
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 60px);
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero h1 span {
+            color: #5eead4;
+        }
+
+        .hero p {
+            color: #bdcbd9;
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #5eead4;
+            color: #081321;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #99f6e4;
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 65px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #aab8cb;
+        }
+
+        /* Category Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid #40536a;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #5eead4;
+            color: #081321;
+        }
+
+        /* Event Cards Grid */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .event-card {
+            background: #13243a;
+            border: 1px solid #293c53;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-info {
+            padding: 22px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #164e63;
+            color: #99f6e4;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .event-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .event-info p {
+            color: #bdcbd9;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .event-details {
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .event-details p {
+            margin-bottom: 5px;
+        }
+
+        .register-btn {
+            width: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 8%;
+            text-align: center;
+            background: #101f33;
+        }
+
+        .about h2 {
+            color: #5eead4;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            color: #bdcbd9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #aab8cb;
+            background: #06101d;
+        }
+
+        /* Registration Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #13243a;
+            padding: 28px;
+            border-radius: 15px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #5eead4;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 7px;
+            border: 1px solid #40536a;
+            background: #081321;
+            color: white;
+        }
+
+        .modal-content .button {
+            width: 100%;
+        }
+
+        #successMessage {
+            display: none;
+            color: #5eead4;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 850px) {
+            .event-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero {
+                padding: 60px 6%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 14px 5%;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .section-title h2 {
+                font-size: 29px;
+            }
+
+            .events-section {
+                padding: 45px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h2>Ereck</h2>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p> ERECK TECHNICAL SOCIETY • NIT KURUKSHETRA</p>
+
+            <h1>
+                Innovate.<br>
+                Create. <span>Inspire.</span>
+            </h1>
+
+            <p>
+                Explore technology, discover new ideas, and connect
+                with creative minds at our campus. Learn new skills,
+                participate in exciting events, and build your future.
+            </p>
+
+            <a href="#events" class="button">
+                Explore Events ↓
+            </a>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section" id="events">
+
+        <div class="section-title">
+            <h2>Upcoming Events</h2>
+            <p>Discover events, learn something new, and register today.</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="All">
+                All Events
+            </button>
+
+            <button class="filter-btn" data-filter="Technical">
+                Technical
+            </button>
+
+            <button class="filter-btn" data-filter="Cultural">
+                Cultural
+            </button>
+
+            <button class="filter-btn" data-filter="Sports">
+                Sports
+            </button>
+        </div>
+
+        <!-- Event Cards -->
+        <div class="event-grid">
+
+            <!-- Event 1 -->
+            <article class="event-card" data-category="Technical">
+
+                <img
+                    src="https://tse1.mm.bing.net/th/id/OIP.TJI0qjI1kvKZTlLmry8_ZgHaEp?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Computer programming and technology">
+
+                <div class="event-info">
+                    <span class="badge">Technical</span>
+
+                    <h3>Vidhwaan</h3>
+
+                    <p>
+                        Solve coding challenges, work with a team,
+                        and turn innovative ideas into projects.
+                    </p>
+
+                    <div class="event-details">
+                        <p>📅 18 October 2026</p>
+                        <p>🕒 10:00 AM – 4:00 PM</p>
+                        <p>📍 Computer Centre</p>
+                    </div>
+
+                    <button class="button register-btn"
+                        data-event="Vidhwaan">
+                        Register
+                    </button>
+                </div>
+            </article>
+
+            <!-- Event 2 -->
+            <article class="event-card" data-category="Cultural">
+
+                <img
+                    src="https://img.freepik.com/premium-photo/dj-disco-party-night-dj-party-night-background-with-speakers-crowd_1036975-96404.jpg?w=2000"
+                    alt="Art and creative activities">
+
+                <div class="event-info">
+                    <span class="badge">Cultural</span>
+
+                    <h3>Confluence</h3>
+
+                    <p>
+                        Showcase your creativity through digital art,
+                        photography, design, and creative expression.
+                    </p>
+
+                    <div class="event-details">
+                        <p>📅 22 October 2026</p>
+                        <p>🕒 3:00 PM – 6:00 PM</p>
+                        <p>📍 Student Activity Centre</p>
+                    </div>
+
+                    <button class="button register-btn"
+                        data-event="Confluence">
+                        Register
+                    </button>
+                </div>
+            </article>
+
+            <!-- Event 3 -->
+            <article class="event-card" data-category="Sports">
+
+                <img
+                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+                    alt="Athletes running on a sports track">
+
+                <div class="event-info">
+                    <span class="badge">Sports</span>
+
+                    <h3>CITIUS</h3>
+
+                    <p>
+                        Join fellow students for friendly competition,
+                        teamwork, fitness, and campus fun.
+                    </p>
+
+                    <div class="event-details">
+                        <p>📅 25 October 2026</p>
+                        <p>🕒 8:00 AM – 12:00 PM</p>
+                        <p>📍 Institute Sports Ground</p>
+                    </div>
+
+                    <button class="button register-btn"
+                        data-event="CITIUS">
+                        Register
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About Ereck </h2>
+
+        <p>
+            Ereck is a student-focused technical society concept
+            for NIT Kurukshetra. Our goal is to encourage innovation,
+            teamwork, practical learning, and technical excellence
+            through engaging events and collaborative projects.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026  Ereck  | NIT Kurukshetra</p>
+
+      <div>
+        <a href="https://instagram.com/ereck_nitkkr?vrfl=d2Fid2ZlMXBpZmhl"
+   target="_blank"
+   rel="noopener noreferrer">
+    Instagram 
+</a>
+      </div>  
+
+<div>
+    <a href="https://www.linkedin.com/company/erecknitkkr/home/">
+    LinkedIn 
+</a>
+
+</div>
+
+    </footer>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal"
+        role="dialog" aria-modal="true"
+        aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 id="modalTitle">Event Registration</h2>
+
+                <button class="close-btn" id="closeModal"
+                    aria-label="Close modal" type="button">
+                    &times;
+                </button>
+            </div>
+
+            <form id="registrationForm">
+
+                <div class="form-group">
+                    <label for="selectedEvent">Selected Event</label>
+
+                    <input type="text" id="selectedEvent"
+                        name="selectedEvent" readonly required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+
+                    <input type="text" id="name" name="name"
+                        placeholder="Enter your full name"
+                        minlength="2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="roll">College Roll Number *</label>
+
+                    <input type="text" id="roll" name="roll"
+                        placeholder="Enter your roll number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+
+                    <input type="email" id="email" name="email"
+                        placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department *</label>
+
+                    <select id="department" name="department" required>
+                        <option value="">Select Department</option>
+                        <option>Computer Engineering</option>
+                        <option>Information Technology</option>
+                        <option>Electrical Engineering</option>
+                        <option>Electronics & Communication</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="button">
+                    Submit Registration
+                </button>
+
+            </form>
+
+            <div id="successMessage" role="status"></div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. Filter events by category
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const eventCards = document.querySelectorAll(".event-card");
+
+        filterButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                const category = button.dataset.filter;
+
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                eventCards.forEach(function(card) {
+                    if (
+                        category === "All" ||
+                        card.dataset.category === category
+                    ) {
+                        card.classList.remove("hidden");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                });
+            });
+        });
+
+        // 2. Open the registration modal
+        const modal = document.getElementById("registrationModal");
+        const selectedEvent = document.getElementById("selectedEvent");
+        const registrationForm = document.getElementById("registrationForm");
+        const successMessage = document.getElementById("successMessage");
+
+        document.querySelectorAll(".register-btn").forEach(function(button) {
+            button.addEventListener("click", function() {
+                registrationForm.reset();
+                successMessage.style.display = "none";
+                registrationForm.style.display = "block";
+
+                selectedEvent.value = button.dataset.event;
+
+                modal.classList.add("show");
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        // 3. Close the modal
+        function closeModal() {
+            modal.classList.remove("show");
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("closeModal")
+            .addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // 4. Handle registration form
+        registrationForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!registrationForm.reportValidity()) {
+                return;
+            }
+
+            const studentName = document.getElementById("name").value.trim();
+            const eventName = selectedEvent.value;
+
+            registrationForm.style.display = "none";
+            successMessage.style.display = "block";
+
+            successMessage.textContent =
+                "Thank you, " + studentName +
+                "! Your demo registration for " + eventName +
+                " is complete.";
+        });
+    </script>
+
+</body>
+</html>
